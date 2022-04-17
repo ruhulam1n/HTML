@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClientID</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        .diagram-wrapper .text-center {
+            text-align: center;
+        }
+        
+        .diagram-wrapper .text-capitalize {
+            text-transform: capitalize;
+        }
+        
+        .diagram-wrapper .text-white {
+            color: #fff;
+        }
+        
+        .diagram-wrapper .position-relative {
+            position: relative;
+        }
+        
+        .diagram-wrapper .position-absolute {
+            position: absolute;
+        }
+        
+        .diagram-wrapper .d-block {
+            display: block;
+        }
+        
+        .diagram-wrapper .d-flex {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        
+        .diagram-wrapper .flex-column {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+        
+        .diagram-wrapper .flex-row {
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+        
+        .diagram-wrapper .justify-content-center {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+        
+        .diagram-wrapper .justify-content-between {
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+        
+        .diagram-wrapper .align-items-center {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        .diagram-wrapper .align-content-center {
+            -ms-flex-line-pack: center;
+            align-content: center;
+        }
+        
+        .diagram-wrapper .flex-wrap {
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        
+        .diagram-wrapper h1,
+        .diagram-wrapper h2 {
+            line-height: 1.2;
+            font-weight: 400;
+            margin: 0;
+        }
+        
+        .diagram-wrapper h2 {
+            font-size: 20px;
+        }
+        
+        .diagram-wrapper .box {
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            background-color: green;
+            border: 2px solid #000;
+            margin: 0 0 0 83px;
+            position: relative;
+        }
+        
+        .diagram-wrapper .box:hover {
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .diagram-wrapper .box a {
+            height: 100%;
+            text-decoration: none;
+        }
+        
+        .diagram-wrapper .box.box-one a {
+            background-color: rgb(255, 199, 69);
+        }
+        
+        .diagram-wrapper .box.box-two a {
+            background-color: rgb(15, 73, 189);
+        }
+        
+        .diagram-wrapper .box.box-three a,
+        .diagram-wrapper .box.box-four a {
+            background-color: rgb(194, 29, 4);
+        }
+        
+        .diagram-wrapper .box.box-one a:hover {
+            background-color: rgba(255, 199, 69, 0.9);
+        }
+        
+        .diagram-wrapper .box.box-two a:hover {
+            background-color: rgba(15, 73, 189, 0.8);
+        }
+        
+        .diagram-wrapper .box.box-three a:hover,
+        .diagram-wrapper .box.box-four a:hover {
+            background-color: rgba(194, 29, 4, 0.9);
+        }
+        
+        .diagram-wrapper .box h2 {
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .diagram-wrapper .box h2 span {
+            font-size: 14px;
+        }
+        
+        .diagram-wrapper .box h2:before {
+            display: none;
+        }
+        
+        .diagram-wrapper .go,
+        .diagram-wrapper .back {
+            background-color: #000;
+            width: 85px;
+            height: 2px;
+        }
+        
+        .diagram-wrapper .go:after,
+        .diagram-wrapper .back:after {
+            content: "";
+            width: 0;
+            height: 0;
+        }
+        
+        .diagram-wrapper .go {
+            top: 50px;
+            left: 100%;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .go:after {
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #000;
+            top: -9px;
+            right: 0;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .back {
+            top: 100px;
+            right: 100%;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .back:after {
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #000;
+            top: -9px;
+            left: 0;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .go-down,
+        .diagram-wrapper .go-up {
+            background-color: #000;
+            width: 2px;
+            height: 100px;
+        }
+        
+        .diagram-wrapper .go-down:after,
+        .diagram-wrapper .go-up:after {
+            content: "";
+            width: 0;
+            height: 0;
+        }
+        
+        .diagram-wrapper .go-down {
+            top: 100%;
+            left: 130px;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .go-down:after {
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #000;
+            top: 92px;
+            right: -9px;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .go-up {
+            bottom: 100%;
+            left: 70px;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .go-up:after {
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #000;
+            top: -3px;
+            right: -9px;
+            position: absolute;
+        }
+        
+        .diagram-wrapper .container {
+            width: 767px;
+            margin: 0 auto;
+        }
+        
+        .diagram-wrapper {
+            padding: 50px 0;
+        }
+        
+        .diagram-wrapper h1 {
+            font-size: 24px;
+            color: #ff7c31;
+            margin-bottom: 50px;
+        }
+        
+        .diagram-wrapper h1:before {
+            display: none;
+        }
+        
+        .diagram-wrapper a {
+            text-decoration: none;
+        }
+        
+        .diagram-wrapper .main-controller .init-box:hover {
+            border-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 128, 0, 0.9);
+        }
+        
+        .diagram-wrapper .main-controller {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 1 200px;
+            flex: 0 1 200px;
+            max-width: 200px;
+            height: 500px;
+            position: relative;
+        }
+        
+        .diagram-wrapper .main-controller .init-box {
+            cursor: pointer;
+            height: 100%;
+            text-decoration: none;
+            background-color: rgb(0, 128, 0);
+            border: 2px solid #000;
+        }
+        
+        .diagram-wrapper .main-controller .client-id {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            height: auto;
+            font-size: 16px;
+            line-height: 1;
+            color: rgb(194, 29, 4);
+            position: absolute;
+            right: -70px;
+            top: 65px;
+            text-decoration: none;
+        }
+        
+        .diagram-wrapper .main-controller .client-id:hover {
+            color: rgba(194, 29, 4, 0.7);
+        }
+        
+        .diagram-wrapper .main-controller h2 span {
+            font-size: 14px;
+        }
+        
+        .diagram-wrapper .main-controller h2:before {
+            display: none;
+        }
+        
+        .diagram-wrapper .parts-content {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 0 calc(100% - 200px);
+            flex: 1 0 calc(100% - 200px);
+            -ms-flex-line-pack: justify;
+            align-content: space-between;
+        }
+        
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            max-width: 100% !important;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .custom-modal .modal-header {
+            padding: 10px 32px 10px 16px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            color: #2271b1;
+            position: relative;
+        }
+        
+        .custom-modal .modal-body {
+            max-height: 500px;
+            padding: 10px 16px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        
+        .custom-modal .modal-footer {
+            padding: 10px 16px;
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #eee;
+            color: #2271b1;
+        }
+        
+        .custom-modal .modal-content {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            padding: 0;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+        
+        .custom-modal .modal-content h3 {
+            font-size: 22px;
+            margin: 0;
+        }
+        
+        .custom-modal .modal-content p {
+            margin-top: 0;
+            line-height: 28px;
+            font-size: 18px;
+        }
+        
+        @keyframes animatetop {
+            from {
+                top: -50%;
+                opacity: 0;
+            }
+            to {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+        
+        .custom-modal .close-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .custom-modal .close-icon:hover,
+        .custom-modal .close-icon:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="diagram-wrapper d-flex flex-column">
+        <h1 class="text-center">
+            Diagram of the initialization of the application
+        </h1>
+        <div class="container d-flex flex-row">
+            <aside class="main-controller">
+                <a id="indexPl" class="init-box d-flex justify-content-center align-items-center">
+                    <h2 class="text-white text-center">
+                        index.pl
+                        <span class="d-block text-capitalize">(Initial controller)</span>
+                    </h2>
+                </a>
+                <span class="go"></span>
+                <a href="https://docs.detailsdetails.eu/docs/core-application/clientid/" class="client-id">ClientID</a
+          >
+        </aside>
+        <section class="parts-content d-flex flex-wrap">
+          <div class="box box-one">
+            <a
+              href="https://docs.detailsdetails.eu/docs/core-application/initialization-diagram/clientconf-pm/"
+              class="d-flex justify-content-center align-items-center"
+            >
+              <h2>
+                ClientConf.pm
+                <span class="d-block text-capitalize">(client model)</span>
+              </h2>
+            </a>
+                <span class="back"></span>
+                <span class="go"></span>
+                <span class="go-down"></span>
+        </div>
+
+        <div class="box box-two">
+            <a href="https://docs.detailsdetails.eu/docs/core-application/initialization-diagram/dbobj-pm/" class="d-flex justify-content-center align-items-center">
+                <h2>
+                    DBobj.pm
+                    <span class="d-block text-capitalize">(Core Modal, That inherit all ohter models)</span
+                >
+              </h2>
+            </a>
+            <span class="back"></span>
+                    <span class="go-down"></span>
+        </div>
+
+        <div class="box box-three">
+            <a href="https://docs.detailsdetails.eu/docs/core-application/initialization-diagram/conf-pm/" class="d-flex justify-content-center align-items-center">
+                <h2>
+                    CONF.pm
+                    <span class="d-block text-capitalize">(App Configaration, Get Client table name.)</span
+                >
+              </h2>
+            </a>
+            <span class="go-up"></span>
+        </div>
+
+        <div class="box box-four">
+            <a href="https://docs.detailsdetails.eu/docs/core-application/initialization-diagram/conf-pm/" class="d-flex justify-content-center align-items-center">
+                <h2>
+                    CONF.pm
+                    <span class="d-block text-capitalize">(Get Database connection credentials)</span
+                >
+              </h2>
+            </a>
+            <span class="go-up"></span>
+        </div>
+        </section>
+    </div>
+    </div>
+
+    <div id="modalController" class="custom-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-icon">&times;</span>
+                <h3>index.pl</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    This is the main controller which bootstraps the application. It uses the template TEMPLATES/start.htm which loads the various required parts of the application.
+                </p>
+                <p>
+                    This controller sends a ClientConf object to the template renderer (as do almost all controllers).
+                </p>
+                <p>
+                    This controller handles much of the issues related to billing for Details clients as well as displaying service-wide client notices from the admin.client_notices table.
+                </p>
+                <p>
+                    This controller has many legacy functions which have been deprecated but not removed from the controller, but also code related to the V2 of Details, both of which are not of concern to Believe.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://dev.kambiohome.com/wp-includes/js/jquery/jquery.min.js"></script>
+    <script>
+        // modal = document.getElementById("modalController");
+        // btnIndexPl = document.getElementById("indexPl");
+        // span = document.getElementsByClassName("close-icon")[0];
+        // btnIndexPl.onclick = function() {
+        //     modal.style.display = "block";
+        // };
+        // span.onclick = function() {
+        //     modal.style.display = "none";
+        // };
+
+        jQuery(function($) {
+
+            modal = $("#modalController");
+
+            btnIndexPl = $("#indexPl");
+
+            closeBtn = $(".close-icon");
+
+            btnIndexPl.on('click', function() {
+                modal.css('display', 'block')
+            })
+
+            closeBtn.on('click', function() {
+                modal.css('display', 'none')
+            })
+
+            window.onclick = function(event) {
+                if (event.target.id == 'modalController') {
+                    modal.css('display', 'none')
+                }
+            };
+
+        })
+    </script>
+</body>
+
+</html>
